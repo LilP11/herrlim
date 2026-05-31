@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ConceptSwitcher from '../../components/ConceptSwitcher.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Menu from '../../components/Menu.astro';
+import Location from '../../components/Location.astro';
+import Order from '../../components/Order.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout lang="de" title="Herr Lim – Konzept 3: K-Modern">
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <ConceptSwitcher current={3} />
+  <Nav lang="de" />
+  <main>
+    <Hero lang="de" />
+    <About lang="de" />
+    <Menu lang="de" />
+    <Location lang="de" />
+    <Order lang="de" />
+  </main>
+  <Footer lang="de" />
+</Layout>
+
+<style is:global>
+  /* ── K-Modern theme ── */
+  :root {
+    --bg:           #FFFFFF;
+    --bg-alt:       #F5F5F5;
+    --bg-dark:      #111111;
+    --bg-dark-alt:  #1C1C1C;
+    --text:         #111111;
+    --text-muted:   #666666;
+    --accent:       #D94F3D;
+    --accent-hover: #C04030;
+    --accent-light: rgba(217, 79, 61, 0.08);
+    --border:       #E3E3E3;
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-sans:    'Outfit', system-ui, sans-serif;
+  }
+
+  /* Push nav below concept bar */
+  .nav { top: 42px; }
+
+  /* Outfit as display — weight & tracking adjustments */
+  .hero-title {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .about-heading {
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .about-heading em {
+    font-style: normal;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .cat-name,
+  .menu-title,
+  .location-title,
+  .order-title,
+  .footer-logo {
+    font-weight: 700;
+  }
+
+  /* More whitespace between sections */
+  .about { padding-top: 7rem; padding-bottom: 7rem; }
+  .menu  { padding-top: 7rem; padding-bottom: 7rem; }
+
+  @media (max-width: 720px) {
+    .about, .menu { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  }
+
+  /* Rounded cards with soft shadows instead of borders */
+  .item-card {
+    border-radius: 10px;
+    border-color: transparent;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  .item-card:hover {
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  /* Sage green for vegetarian */
+  .tag-veg {
+    background: rgba(120, 175, 115, 0.12);
+    color: #3A7036;
+  }
+
+  /* Smaller quote mark — sans-serif doesn't need it as big */
+  .review-quote { font-size: 3rem; }
+
+  /* Highlight cards — more rounded */
+  .highlight-card { border-radius: 10px; }
+
+  /* Stat values in accent */
+  .stat-value { color: var(--accent); }
+
+  /* About photo rounded more */
+  .about-photo-wrap { border-radius: 10px; }
+</style>

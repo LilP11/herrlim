@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ConceptSwitcher from '../../components/ConceptSwitcher.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Menu from '../../components/Menu.astro';
+import Location from '../../components/Location.astro';
+import Order from '../../components/Order.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout lang="de" title="Herr Lim – Konzept 2: Hidden Gem">
+  <ConceptSwitcher current={2} />
+  <Nav lang="de" />
+  <main>
+    <Hero lang="de" />
+    <About lang="de" />
+    <Menu lang="de" />
+    <Location lang="de" />
+    <Order lang="de" />
+  </main>
+  <Footer lang="de" />
+</Layout>
+
+<style is:global>
+  /* Hidden Gem — same as main site, nav offset for concept bar */
+  .nav { top: 42px; }
+</style>

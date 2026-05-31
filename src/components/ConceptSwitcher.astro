@@ -1,0 +1,87 @@
+---
+interface Props { current: 1 | 2 | 3 }
+const { current } = Astro.props;
+---
+
+<div class="cs-bar">
+  <span class="cs-label">Entwurf-Präsentation</span>
+  <div class="cs-links">
+    <a href="/concept-1" class:list={['cs-link', { 'cs-active': current === 1 }]}>
+      <span class="cs-num">1</span>
+      <span class="cs-name">Seoul Night</span>
+    </a>
+    <a href="/concept-2" class:list={['cs-link', { 'cs-active': current === 2 }]}>
+      <span class="cs-num">2</span>
+      <span class="cs-name">Hidden Gem</span>
+    </a>
+    <a href="/concept-3" class:list={['cs-link', { 'cs-active': current === 3 }]}>
+      <span class="cs-num">3</span>
+      <span class="cs-name">K-Modern</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .cs-bar {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 42px;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .cs-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+
+  .cs-links {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .cs-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    transition: all 0.15s;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  .cs-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .cs-active {
+    background: rgba(255,255,255,0.12) !important;
+    color: #fff !important;
+  }
+
+  .cs-num {
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    .cs-label { display: none; }
+    .cs-name { display: none; }
+    .cs-link { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+  }
+</style>
