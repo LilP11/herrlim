@@ -1,0 +1,208 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">Herr Lim</span>
+      <span class="footer-korean">한식</span>
+      <p class="footer-tagline">Koreanisches Street Food<br />Bad Homburg vor der Höhe</p>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Adresse</h3>
+      <address class="footer-address">
+        Haingasse 17<br />
+        61348 Bad Homburg vor der Höhe<br />
+        Deutschland
+      </address>
+      <a href="tel:+4915563304547" class="footer-phone">+49 155 63 304547</a>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Öffnungszeiten</h3>
+      <dl class="footer-hours">
+        <div class="fh-row">
+          <dt>Mo – Fr</dt>
+          <dd>11:30 – 15:00<br />16:30 – 19:00</dd>
+        </div>
+        <div class="fh-row fh-closed">
+          <dt>Sa & So</dt>
+          <dd>Geschlossen</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Bestellen</h3>
+      <ul class="footer-links">
+        <li>
+          <a
+            href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Uber Eats ↗
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.google.com/maps/place/Restaurant+Herr+Lim"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Maps ↗
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.tripadvisor.com/Restaurant_Review-g187334-d24488269-Reviews-HerrLim_Korean_Food-Bad_Homburg_Hesse.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Tripadvisor ↗
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {year} Restaurant Herr Lim · Alle Rechte vorbehalten</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg-dark-alt);
+    color: rgba(250, 247, 242, 0.55);
+    padding: 4.5rem 1.5rem 0;
+  }
+
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(250, 247, 242, 0.07);
+  }
+
+  .footer-logo {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: #faf7f2;
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-korean {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--accent);
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-tagline {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: rgba(250, 247, 242, 0.35);
+  }
+
+  .footer-heading {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.65;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .footer-address {
+    font-style: normal;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-phone {
+    font-size: 0.85rem;
+    color: rgba(250, 247, 242, 0.55);
+    transition: color 0.2s;
+  }
+
+  .footer-phone:hover {
+    color: rgba(250, 247, 242, 0.9);
+  }
+
+  .footer-hours {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .fh-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.82rem;
+  }
+
+  .fh-row dt {
+    color: rgba(250, 247, 242, 0.45);
+  }
+
+  .fh-row dd {
+    text-align: right;
+    line-height: 1.5;
+    color: rgba(250, 247, 242, 0.65);
+  }
+
+  .fh-closed dt,
+  .fh-closed dd {
+    color: rgba(250, 247, 242, 0.25);
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem;
+    color: rgba(250, 247, 242, 0.5);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: rgba(250, 247, 242, 0.9);
+  }
+
+  .footer-bottom {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1.25rem 0 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(250, 247, 242, 0.2);
+  }
+
+  @media (max-width: 900px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

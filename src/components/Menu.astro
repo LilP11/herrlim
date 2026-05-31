@@ -1,0 +1,268 @@
+---
+import { menuCategories } from '../data/menu.js';
+
+function formatPrice(price: number): string {
+  return `€ ${price.toFixed(2).replace('.', ',')}`;
+}
+
+const tagConfig: Record<string, { label: string; class: string }> = {
+  'vegetarisch': { label: '🌱 Vegetarisch', class: 'tag-veg' },
+  'scharf':      { label: '🌶 Scharf',      class: 'tag-spicy' },
+  'sehr scharf': { label: '🌶🌶 Sehr scharf', class: 'tag-hot' },
+};
+---
+
+<section class="menu" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header">
+      <span class="section-label">Speisekarte</span>
+      <h2 class="menu-title">Was bei uns auf den Tisch kommt</h2>
+      <p class="menu-subtitle">
+        Täglich frisch zubereitet · Alle Preise inkl. MwSt. · Auch zum Mitnehmen
+      </p>
+    </div>
+
+    {menuCategories.map((cat) => (
+      <div class="category" id={`cat-${cat.id}`}>
+        <div class="cat-header">
+          <div class="cat-names">
+            <h3 class="cat-name">{cat.name}</h3>
+            <span class="cat-korean">{cat.korean}</span>
+          </div>
+          <div class="cat-meta">
+            <span class="cat-subtitle">{cat.subtitle}</span>
+            {cat.description && <span class="cat-desc">{cat.description}</span>}
+          </div>
+        </div>
+
+        <div class="items-grid">
+          {cat.items.map((item) => (
+            <div class="item-card">
+              <div class="item-top">
+                <span class="item-code">{item.code}</span>
+                <span class="item-price">{formatPrice(item.price)}</span>
+              </div>
+              <h4 class="item-name">{item.name}</h4>
+              {item.description && <p class="item-desc">{item.description}</p>}
+              {item.tags && item.tags.length > 0 && (
+                <div class="item-tags">
+                  {item.tags.map((tag) => {
+                    const conf = tagConfig[tag];
+                    return conf ? (
+                      <span class={`tag ${conf.class}`}>{conf.label}</span>
+                    ) : (
+                      <span class="tag">{tag}</span>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <p class="menu-disclaimer">
+      Allergene auf Anfrage. Speisekarte kann saisonal variieren.
+    </p>
+  </div>
+</section>
+
+<style>
+  .menu {
+    background: var(--bg-alt);
+    padding: 6rem 1.5rem;
+  }
+
+  .menu-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .menu-header {
+    margin-bottom: 4rem;
+  }
+
+  .menu-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .menu-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .category {
+    margin-bottom: 3.5rem;
+  }
+
+  .cat-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cat-names {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cat-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .cat-korean {
+    font-size: 1rem;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .cat-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    text-align: right;
+  }
+
+  .cat-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .cat-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+  }
+
+  .item-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .item-card:hover {
+    border-color: rgba(192, 57, 43, 0.3);
+    box-shadow: 0 2px 12px rgba(192, 57, 43, 0.06);
+  }
+
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item-code {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .item-price {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+
+  .item-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .item-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .tag-veg {
+    background: rgba(34, 120, 60, 0.1);
+    color: #1a6632;
+  }
+
+  .tag-spicy {
+    background: rgba(220, 100, 30, 0.1);
+    color: #b84a12;
+  }
+
+  .tag-hot {
+    background: rgba(192, 57, 43, 0.12);
+    color: var(--accent);
+  }
+
+  .menu-disclaimer {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .items-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .items-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cat-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cat-meta {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+</style>

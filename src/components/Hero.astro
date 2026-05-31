@@ -1,0 +1,185 @@
+---
+---
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">한식 · Koreanisches Street Food</span>
+    <h1 class="hero-title">Herr Lim</h1>
+    <p class="hero-location">Haingasse 17 · Bad Homburg vor der Höhe</p>
+    <p class="hero-text">
+      Authentisches koreanisches Street Food, versteckt in den Gassen von Bad&nbsp;Homburg.
+      Cupbap, Ramen, Tteokbokki, K-Hotdogs – so wie man sie in Seoul findet.
+    </p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">Zur Speisekarte</a>
+      <a
+        href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outline"
+      >
+        Online bestellen ↗
+      </a>
+    </div>
+    <div class="hero-hours">
+      <div class="hours-item">
+        <span class="hours-label">Mo – Fr</span>
+        <span class="hours-sep">·</span>
+        <span class="hours-time">11:30 – 15:00 & 16:30 – 19:00</span>
+      </div>
+      <div class="hours-item">
+        <span class="hours-label">Sa & So</span>
+        <span class="hours-sep">·</span>
+        <span class="hours-time">Geschlossen</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-deco" aria-hidden="true">한</div>
+</section>
+
+<style>
+  .hero {
+    background: var(--bg-dark);
+    color: white;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 1.5rem 5rem;
+  }
+
+  .hero-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 12vw, 9rem);
+    line-height: 0.95;
+    color: #faf7f2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-location {
+    font-size: 0.875rem;
+    color: rgba(250, 247, 242, 0.4);
+    letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-text {
+    font-size: 1.05rem;
+    color: rgba(250, 247, 242, 0.7);
+    line-height: 1.75;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(250, 247, 242, 0.25);
+    color: rgba(250, 247, 242, 0.8);
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(250, 247, 242, 0.6);
+    color: #faf7f2;
+  }
+
+  .hero-hours {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .hours-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+  }
+
+  .hours-label {
+    color: rgba(250, 247, 242, 0.5);
+    min-width: 4.5rem;
+  }
+
+  .hours-sep {
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .hours-time {
+    color: rgba(250, 247, 242, 0.4);
+  }
+
+  .hero-deco {
+    position: absolute;
+    right: -1.5rem;
+    bottom: -5rem;
+    font-size: clamp(14rem, 32vw, 26rem);
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.025);
+    user-select: none;
+    pointer-events: none;
+    font-family: var(--font-sans);
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-deco {
+      font-size: 10rem;
+      right: -1rem;
+      bottom: -2rem;
+    }
+  }
+</style>

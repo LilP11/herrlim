@@ -1,0 +1,118 @@
+---
+---
+
+<section class="order" id="order">
+  <div class="order-inner">
+    <span class="order-eyebrow">Jetzt bestellen</span>
+    <h2 class="order-title">Hunger auf Korea?</h2>
+    <p class="order-text">
+      Direkt im Restaurant genießen oder bequem nach Hause liefern lassen –<br />
+      wir freuen uns auf euch.
+    </p>
+    <div class="order-actions">
+      <a
+        href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="order-btn order-btn-primary"
+      >
+        <span>Über Uber Eats bestellen</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="tel:+4915563304547" class="order-btn order-btn-outline">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 2h2l1 2.5-1.5 1.5a8 8 0 004 4l1.5-1.5L13 9.5v2A1.5 1.5 0 0111.5 13C6.25 13 2 8.75 2 3.5A1.5 1.5 0 013.5 2z" fill="currentColor"/>
+        </svg>
+        <span>Anrufen: +49 155 63 304547</span>
+      </a>
+    </div>
+    <p class="order-hours">Mo – Fr · 11:30 – 15:00 & 16:30 – 19:00</p>
+  </div>
+</section>
+
+<style>
+  .order {
+    background: var(--accent);
+    padding: 6rem 1.5rem;
+    text-align: center;
+  }
+
+  .order-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .order-eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .order-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: white;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .order-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .order-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.75rem;
+  }
+
+  .order-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .order-btn-primary {
+    background: white;
+    color: var(--accent);
+  }
+
+  .order-btn-primary:hover {
+    background: #faf7f2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .order-btn-outline {
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+
+  .order-btn-outline:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .order-hours {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+</style>

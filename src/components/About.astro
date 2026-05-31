@@ -1,0 +1,180 @@
+---
+---
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-content">
+      <span class="section-label">Über uns</span>
+      <h2 class="about-heading">
+        Ein gut gehütetes<br /><em>Geheimnis</em>
+      </h2>
+      <div class="about-text">
+        <p>
+          Versteckt in der Haingasse mitten in Bad Homburg liegt ein kleines, feines Restaurant,
+          das man kennen muss: <strong>Herr Lim</strong>. Wer ihn einmal findet, kommt immer wieder.
+        </p>
+        <p>
+          Wir kochen authentisches koreanisches Street Food – keine Fusion, keine Kompromisse.
+          Cupbap mit hausgemachtem Kimchi, knuspriges K-Chicken, würzige Tteokbokki und
+          dampfende Ramen. Alles frisch, mit Liebe und ohne Schnickschnack.
+        </p>
+        <p>
+          Rund 15 Plätze, hohe Tische, gute Musik – und immer ein freundliches Gesicht hinter
+          der Theke. Takeaway natürlich auch möglich.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-value">4,9</span>
+          <span class="stat-label">Google Bewertung</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">500+</span>
+          <span class="stat-label">Rezensionen</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">#1</span>
+          <span class="stat-label">Koreanisch in Bad Homburg</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-aside">
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <blockquote class="review-text">
+          Sehr authentisches koreanisches Street Food – das Beste, was Bad Homburg zu bieten hat.
+          Kleine, gemütliche Atmosphäre, sehr nettes Personal.
+        </blockquote>
+        <cite class="review-cite">– Google-Bewertung, 5 Sterne</cite>
+      </div>
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <blockquote class="review-text">
+          Absolut empfehlenswert! Das K-Chicken ist der Wahnsinn und die Tteokbokki
+          genau richtig scharf. Wird nicht das letzte Mal sein.
+        </blockquote>
+        <cite class="review-cite">– Google-Bewertung, 5 Sterne</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 6rem 1.5rem;
+    background: var(--bg);
+  }
+
+  .about-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+
+  .about-heading em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .about-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 3.5rem;
+  }
+
+  .review-card {
+    background: var(--bg-alt);
+    border-radius: 8px;
+    padding: 2rem 2rem 1.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .review-quote {
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    line-height: 0.4;
+    color: var(--accent);
+    opacity: 0.25;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .review-text {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .review-cite {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: normal;
+  }
+
+  @media (max-width: 800px) {
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .about-aside {
+      padding-top: 0;
+    }
+  }
+</style>

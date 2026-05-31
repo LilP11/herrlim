@@ -1,0 +1,101 @@
+---
+---
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Herr Lim</a>
+    <ul class="nav-links">
+      <li><a href="#menu">Speisekarte</a></li>
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#location">Standort</a></li>
+      <li>
+        <a
+          href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-cta"
+        >
+          Bestellen ↗
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .nav-cta {
+    background: var(--accent);
+    color: white !important;
+    padding: 0.5rem 1.1rem;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent-hover) !important;
+    color: white !important;
+  }
+
+  @media (max-width: 580px) {
+    .nav-links {
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+    }
+
+    .nav-cta {
+      padding: 0.4rem 0.75rem;
+    }
+  }
+</style>
