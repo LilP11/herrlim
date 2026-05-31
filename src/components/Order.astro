@@ -116,4 +116,21 @@ const t = translations[lang];
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.45);
   }
+
+  @media (max-width: 720px) {
+    .order {
+      padding: 4rem 1.2rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .order-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .order-btn {
+      justify-content: center;
+    }
+  }
 </style>

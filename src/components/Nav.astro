@@ -8,28 +8,58 @@ const t = translations[lang];
 <nav class="nav">
   <div class="nav-inner">
     <a href={lang === 'de' ? '/' : '/en'} class="nav-logo">Herr Lim</a>
-    <ul class="nav-links">
-      <li><a href="#menu">{t.nav.menu}</a></li>
-      <li><a href="#about">{t.nav.about}</a></li>
-      <li><a href="#location">{t.nav.location}</a></li>
-      <li>
-        <a
-          href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-cta"
-        >
-          {t.nav.order}
-        </a>
-      </li>
-      <li>
-        <a href={t.langSwitch.href} class="lang-switch" aria-label="Switch language">
-          {t.langSwitch.label}
-        </a>
-      </li>
-    </ul>
+
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#menu">{t.nav.menu}</a></li>
+        <li><a href="#about">{t.nav.about}</a></li>
+        <li><a href="#location">{t.nav.location}</a></li>
+        <li>
+          <a
+            href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-cta"
+          >{t.nav.order}</a>
+        </li>
+        <li>
+          <a href={t.langSwitch.href} class="lang-switch">{t.langSwitch.label}</a>
+        </li>
+      </ul>
+
+      <button
+        class="nav-hamburger"
+        id="nav-hamburger"
+        aria-label="Navigation öffnen"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </nav>
+
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const links = document.getElementById('nav-links');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = links?.classList.toggle('is-open');
+    hamburger.classList.toggle('is-open', !!isOpen);
+    hamburger.setAttribute('aria-expanded', String(!!isOpen));
+  });
+
+  links?.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('is-open');
+      hamburger?.classList.remove('is-open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 <style>
   .nav {
@@ -58,6 +88,11 @@ const t = translations[lang];
     flex-shrink: 0;
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+  }
+
   .nav-links {
     list-style: none;
     display: flex;
@@ -69,7 +104,6 @@ const t = translations[lang];
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text);
-    letter-spacing: 0.01em;
     transition: color 0.2s;
   }
 
@@ -87,7 +121,6 @@ const t = translations[lang];
 
   .nav-cta:hover {
     background: var(--accent-hover) !important;
-    color: white !important;
   }
 
   .lang-switch {
@@ -106,21 +139,99 @@ const t = translations[lang];
     border-color: var(--accent) !important;
   }
 
-  @media (max-width: 640px) {
+  /* Hamburger button — hidden on desktop */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--text);
+    border-radius: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    transform-origin: center;
+  }
+
+  .nav-hamburger.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-hamburger.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 720px) {
+    .nav-hamburger {
+      display: flex;
+    }
+
     .nav-links {
-      gap: 0.75rem;
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 0.25rem 0 0.5rem;
+    }
+
+    .nav-links.is-open {
+      display: flex;
+    }
+
+    .nav-links li {
+      border-top: 1px solid var(--border);
     }
 
     .nav-links a {
-      font-size: 0.78rem;
+      display: block;
+      padding: 0.95rem 1.5rem;
+      font-size: 1rem !important;
+      font-weight: 500;
+      color: var(--text) !important;
     }
 
-    .nav-logo {
-      font-size: 1.1rem;
+    .nav-links a:hover {
+      background: var(--bg-alt);
+      color: var(--accent) !important;
     }
 
     .nav-cta {
-      padding: 0.4rem 0.7rem;
+      background: none !important;
+      color: var(--accent) !important;
+      border-radius: 0 !important;
+      padding: 0.95rem 1.5rem !important;
+      font-weight: 700 !important;
+    }
+
+    .lang-switch {
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0.95rem 1.5rem !important;
+      letter-spacing: 0.05em !important;
+      color: var(--text-muted) !important;
     }
   }
 </style>
