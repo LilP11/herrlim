@@ -2,16 +2,18 @@
 interface Props {
   title?: string;
   description?: string;
+  lang?: 'de' | 'en';
 }
 
 const {
   title = 'Herr Lim – Koreanisches Street Food in Bad Homburg',
   description = 'Authentisches koreanisches Street Food in Bad Homburg vor der Höhe. Cupbap, Ramen, Tteokbokki, K-Hotdogs und mehr. Montag bis Freitag geöffnet.',
+  lang = 'de',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

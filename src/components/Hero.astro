@@ -1,36 +1,37 @@
 ---
+import { translations } from '../i18n/translations.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <span class="hero-eyebrow">한식 · Koreanisches Street Food</span>
+    <span class="hero-eyebrow">한식 · {t.hero.eyebrow}</span>
     <h1 class="hero-title">Herr Lim</h1>
-    <p class="hero-location">Haingasse 17 · Bad Homburg vor der Höhe</p>
-    <p class="hero-text">
-      Authentisches koreanisches Street Food, versteckt in den Gassen von Bad&nbsp;Homburg.
-      Cupbap, Ramen, Tteokbokki, K-Hotdogs – so wie man sie in Seoul findet.
-    </p>
+    <p class="hero-location">{t.hero.address}</p>
+    <p class="hero-text">{t.hero.text}</p>
     <div class="hero-actions">
-      <a href="#menu" class="btn btn-primary">Zur Speisekarte</a>
+      <a href="#menu" class="btn btn-primary">{t.hero.ctaMenu}</a>
       <a
         href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
         target="_blank"
         rel="noopener noreferrer"
         class="btn btn-outline"
       >
-        Online bestellen ↗
+        {t.hero.ctaOrder}
       </a>
     </div>
     <div class="hero-hours">
       <div class="hours-item">
-        <span class="hours-label">Mo – Fr</span>
+        <span class="hours-label">{t.hero.monFri}</span>
         <span class="hours-sep">·</span>
-        <span class="hours-time">11:30 – 15:00 & 16:30 – 19:00</span>
+        <span class="hours-time">{t.hero.hours}</span>
       </div>
       <div class="hours-item">
-        <span class="hours-label">Sa & So</span>
+        <span class="hours-label">{t.hero.satSun}</span>
         <span class="hours-sep">·</span>
-        <span class="hours-time">Geschlossen</span>
+        <span class="hours-time">{t.hero.closed}</span>
       </div>
     </div>
   </div>

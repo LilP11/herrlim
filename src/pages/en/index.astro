@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Menu from '../../components/Menu.astro';
+import Location from '../../components/Location.astro';
+import Order from '../../components/Order.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'en';
+---
+
+<Layout
+  lang={lang}
+  title="Herr Lim – Korean Street Food in Bad Homburg"
+  description="Authentic Korean street food in Bad Homburg vor der Höhe. Rice bowls, ramen, tteokbokki, K-hotdogs and more. Open Monday to Friday."
+>
+  <Nav lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Menu lang={lang} />
+    <Location lang={lang} />
+    <Order lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

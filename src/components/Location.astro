@@ -1,11 +1,15 @@
 ---
+import { translations } from '../i18n/translations.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <section class="location" id="location">
   <div class="location-inner">
     <div class="location-info">
-      <span class="section-label" style="color: rgba(250,247,242,0.5)">Standort & Öffnungszeiten</span>
-      <h2 class="location-title">Finden Sie uns</h2>
+      <span class="section-label" style="color: rgba(250,247,242,0.5)">{t.location.label}</span>
+      <h2 class="location-title">{t.location.title}</h2>
 
       <address class="address">
         <div class="address-line">
@@ -23,26 +27,24 @@
       </address>
 
       <div class="hours-table">
-        <h3 class="hours-title">Öffnungszeiten</h3>
+        <h3 class="hours-title">{t.location.hoursTitle}</h3>
         <dl class="hours-list">
           <div class="hours-row">
-            <dt>Montag – Freitag</dt>
+            <dt>{t.location.monFri}</dt>
             <dd>11:30 – 15:00<br />16:30 – 19:00</dd>
           </div>
           <div class="hours-row hours-closed">
-            <dt>Samstag</dt>
-            <dd>Geschlossen</dd>
+            <dt>{t.location.sat}</dt>
+            <dd>{t.location.closed}</dd>
           </div>
           <div class="hours-row hours-closed">
-            <dt>Sonntag</dt>
-            <dd>Geschlossen</dd>
+            <dt>{t.location.sun}</dt>
+            <dd>{t.location.closed}</dd>
           </div>
         </dl>
       </div>
 
-      <p class="location-note">
-        Kein Reservierungssystem – einfach vorbeikommen oder anrufen.
-      </p>
+      <p class="location-note">{t.location.note}</p>
     </div>
 
     <div class="location-map">
@@ -59,7 +61,7 @@
         rel="noopener noreferrer"
         class="map-link"
       >
-        In Google Maps öffnen ↗
+        {t.location.mapsLink}
       </a>
     </div>
   </div>
@@ -161,7 +163,6 @@
   .hours-row dt {
     font-size: 0.875rem;
     color: rgba(250, 247, 242, 0.6);
-    font-weight: 400;
   }
 
   .hours-row dd {

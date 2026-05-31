@@ -1,13 +1,17 @@
 ---
+import { translations } from '../i18n/translations.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">Herr Lim</a>
+    <a href={lang === 'de' ? '/' : '/en'} class="nav-logo">Herr Lim</a>
     <ul class="nav-links">
-      <li><a href="#menu">Speisekarte</a></li>
-      <li><a href="#about">Über uns</a></li>
-      <li><a href="#location">Standort</a></li>
+      <li><a href="#menu">{t.nav.menu}</a></li>
+      <li><a href="#about">{t.nav.about}</a></li>
+      <li><a href="#location">{t.nav.location}</a></li>
       <li>
         <a
           href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
@@ -15,7 +19,12 @@
           rel="noopener noreferrer"
           class="nav-cta"
         >
-          Bestellen ↗
+          {t.nav.order}
+        </a>
+      </li>
+      <li>
+        <a href={t.langSwitch.href} class="lang-switch" aria-label="Switch language">
+          {t.langSwitch.label}
         </a>
       </li>
     </ul>
@@ -81,9 +90,25 @@
     color: white !important;
   }
 
-  @media (max-width: 580px) {
+  .lang-switch {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    color: var(--text-muted) !important;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    transition: border-color 0.2s, color 0.2s !important;
+  }
+
+  .lang-switch:hover {
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
+  }
+
+  @media (max-width: 640px) {
     .nav-links {
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .nav-links a {
@@ -95,7 +120,7 @@
     }
 
     .nav-cta {
-      padding: 0.4rem 0.75rem;
+      padding: 0.4rem 0.7rem;
     }
   }
 </style>

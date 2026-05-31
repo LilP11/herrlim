@@ -1,4 +1,8 @@
 ---
+import { translations } from '../i18n/translations.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 const year = new Date().getFullYear();
 ---
 
@@ -7,11 +11,11 @@ const year = new Date().getFullYear();
     <div class="footer-brand">
       <span class="footer-logo">Herr Lim</span>
       <span class="footer-korean">한식</span>
-      <p class="footer-tagline">Koreanisches Street Food<br />Bad Homburg vor der Höhe</p>
+      <p class="footer-tagline">{t.footer.tagline}</p>
     </div>
 
     <div class="footer-col">
-      <h3 class="footer-heading">Adresse</h3>
+      <h3 class="footer-heading">{t.footer.addressLabel}</h3>
       <address class="footer-address">
         Haingasse 17<br />
         61348 Bad Homburg vor der Höhe<br />
@@ -21,46 +25,34 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="footer-col">
-      <h3 class="footer-heading">Öffnungszeiten</h3>
+      <h3 class="footer-heading">{t.footer.hoursLabel}</h3>
       <dl class="footer-hours">
         <div class="fh-row">
-          <dt>Mo – Fr</dt>
-          <dd>11:30 – 15:00<br />16:30 – 19:00</dd>
+          <dt>{t.footer.monFri}</dt>
+          <dd>{t.footer.hours1}<br />{t.footer.hours2}</dd>
         </div>
         <div class="fh-row fh-closed">
-          <dt>Sa & So</dt>
-          <dd>Geschlossen</dd>
+          <dt>{t.footer.satSun}</dt>
+          <dd>{t.footer.closed}</dd>
         </div>
       </dl>
     </div>
 
     <div class="footer-col">
-      <h3 class="footer-heading">Bestellen</h3>
+      <h3 class="footer-heading">{t.footer.orderLabel}</h3>
       <ul class="footer-links">
         <li>
-          <a
-            href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g" target="_blank" rel="noopener noreferrer">
             Uber Eats ↗
           </a>
         </li>
         <li>
-          <a
-            href="https://www.google.com/maps/place/Restaurant+Herr+Lim"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://www.google.com/maps/place/Restaurant+Herr+Lim" target="_blank" rel="noopener noreferrer">
             Google Maps ↗
           </a>
         </li>
         <li>
-          <a
-            href="https://www.tripadvisor.com/Restaurant_Review-g187334-d24488269-Reviews-HerrLim_Korean_Food-Bad_Homburg_Hesse.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://www.tripadvisor.com/Restaurant_Review-g187334-d24488269-Reviews-HerrLim_Korean_Food-Bad_Homburg_Hesse.html" target="_blank" rel="noopener noreferrer">
             Tripadvisor ↗
           </a>
         </li>
@@ -69,7 +61,7 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="footer-bottom">
-    <p>© {year} Restaurant Herr Lim · Alle Rechte vorbehalten</p>
+    <p>© {year} Restaurant Herr Lim · {t.footer.copyright}</p>
   </div>
 </footer>
 

@@ -1,32 +1,34 @@
 ---
+import { translations } from '../i18n/translations.js';
 import { menuCategories } from '../data/menu.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 
 function formatPrice(price: number): string {
-  return `€ ${price.toFixed(2).replace('.', ',')}`;
+  return `€ ${price.toFixed(2).replace('.', ',')}`;
 }
 
-const tagConfig: Record<string, { label: string; class: string }> = {
-  'vegetarisch': { label: '🌱 Vegetarisch', class: 'tag-veg' },
-  'scharf':      { label: '🌶 Scharf',      class: 'tag-spicy' },
-  'sehr scharf': { label: '🌶🌶 Sehr scharf', class: 'tag-hot' },
+const tagClass: Record<string, string> = {
+  vegetarisch: 'tag-veg',
+  scharf: 'tag-spicy',
+  'sehr scharf': 'tag-hot',
 };
 ---
 
 <section class="menu" id="menu">
   <div class="menu-inner">
     <div class="menu-header">
-      <span class="section-label">Speisekarte</span>
-      <h2 class="menu-title">Was bei uns auf den Tisch kommt</h2>
-      <p class="menu-subtitle">
-        Täglich frisch zubereitet · Alle Preise inkl. MwSt. · Auch zum Mitnehmen
-      </p>
+      <span class="section-label">{t.menu.label}</span>
+      <h2 class="menu-title">{t.menu.title}</h2>
+      <p class="menu-subtitle">{t.menu.subtitle}</p>
     </div>
 
     <div class="highlights">
       <div class="highlight-card">
         <img
           src="https://images.unsplash.com/photo-1741295017668-c8132acd6fc0?auto=format&fit=crop&w=600&q=80"
-          alt="Bibimbap – koreanischer Reistopf mit Gemüse"
+          alt="Bibimbap"
           loading="lazy"
           width="600"
           height="400"
@@ -39,7 +41,7 @@ const tagConfig: Record<string, { label: string; class: string }> = {
       <div class="highlight-card">
         <img
           src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
-          alt="Ramen – koreanische Nudelsuppe mit Ei"
+          alt="Ramen"
           loading="lazy"
           width="600"
           height="400"
@@ -52,7 +54,7 @@ const tagConfig: Record<string, { label: string; class: string }> = {
       <div class="highlight-card">
         <img
           src="https://images.unsplash.com/photo-1624153064067-566cae78993d?auto=format&fit=crop&w=600&q=80"
-          alt="K-Chicken – knuspriges koreanisches Fried Chicken"
+          alt="K-Chicken"
           loading="lazy"
           width="600"
           height="400"
@@ -68,12 +70,12 @@ const tagConfig: Record<string, { label: string; class: string }> = {
       <div class="category" id={`cat-${cat.id}`}>
         <div class="cat-header">
           <div class="cat-names">
-            <h3 class="cat-name">{cat.name}</h3>
+            <h3 class="cat-name">{typeof cat.name === 'object' ? cat.name[lang] : cat.name}</h3>
             <span class="cat-korean">{cat.korean}</span>
           </div>
           <div class="cat-meta">
-            <span class="cat-subtitle">{cat.subtitle}</span>
-            {cat.description && <span class="cat-desc">{cat.description}</span>}
+            <span class="cat-subtitle">{cat.subtitle[lang]}</span>
+            {cat.description && <span class="cat-desc">{cat.description[lang]}</span>}
           </div>
         </div>
 
@@ -85,17 +87,12 @@ const tagConfig: Record<string, { label: string; class: string }> = {
                 <span class="item-price">{formatPrice(item.price)}</span>
               </div>
               <h4 class="item-name">{item.name}</h4>
-              {item.description && <p class="item-desc">{item.description}</p>}
+              {item.description && <p class="item-desc">{item.description[lang]}</p>}
               {item.tags && item.tags.length > 0 && (
                 <div class="item-tags">
-                  {item.tags.map((tag) => {
-                    const conf = tagConfig[tag];
-                    return conf ? (
-                      <span class={`tag ${conf.class}`}>{conf.label}</span>
-                    ) : (
-                      <span class="tag">{tag}</span>
-                    );
-                  })}
+                  {item.tags.map((tag) => (
+                    <span class={`tag ${tagClass[tag] ?? ''}`}>{t.tags[tag] ?? tag}</span>
+                  ))}
                 </div>
               )}
             </div>
@@ -104,9 +101,7 @@ const tagConfig: Record<string, { label: string; class: string }> = {
       </div>
     ))}
 
-    <p class="menu-disclaimer">
-      Allergene auf Anfrage. Speisekarte kann saisonal variieren.
-    </p>
+    <p class="menu-disclaimer">{t.menu.disclaimer}</p>
   </div>
 </section>
 
@@ -311,7 +306,6 @@ const tagConfig: Record<string, { label: string; class: string }> = {
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
     font-weight: 500;
-    letter-spacing: 0.01em;
   }
 
   .tag-veg {

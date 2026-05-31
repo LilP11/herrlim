@@ -1,14 +1,15 @@
 ---
+import { translations } from '../i18n/translations.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <section class="order" id="order">
   <div class="order-inner">
-    <span class="order-eyebrow">Jetzt bestellen</span>
-    <h2 class="order-title">Hunger auf Korea?</h2>
-    <p class="order-text">
-      Direkt im Restaurant genießen oder bequem nach Hause liefern lassen –<br />
-      wir freuen uns auf euch.
-    </p>
+    <span class="order-eyebrow">{t.order.eyebrow}</span>
+    <h2 class="order-title">{t.order.title}</h2>
+    <p class="order-text" set:html={t.order.text} />
     <div class="order-actions">
       <a
         href="https://www.ubereats.com/de-en/store/herrlim-korean-food/0GGVBb8yVkyeFWQduFzB_g"
@@ -16,7 +17,7 @@
         rel="noopener noreferrer"
         class="order-btn order-btn-primary"
       >
-        <span>Über Uber Eats bestellen</span>
+        <span>{t.order.uberEats}</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -25,10 +26,10 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3.5 2h2l1 2.5-1.5 1.5a8 8 0 004 4l1.5-1.5L13 9.5v2A1.5 1.5 0 0111.5 13C6.25 13 2 8.75 2 3.5A1.5 1.5 0 013.5 2z" fill="currentColor"/>
         </svg>
-        <span>Anrufen: +49 155 63 304547</span>
+        <span>{t.order.call}</span>
       </a>
     </div>
-    <p class="order-hours">Mo – Fr · 11:30 – 15:00 & 16:30 – 19:00</p>
+    <p class="order-hours">{t.order.hours}</p>
   </div>
 </section>
 

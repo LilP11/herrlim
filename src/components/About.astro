@@ -1,40 +1,34 @@
 ---
+import { translations } from '../i18n/translations.js';
+interface Props { lang: 'de' | 'en' }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <section class="about" id="about">
   <div class="about-inner">
     <div class="about-content">
-      <span class="section-label">Über uns</span>
+      <span class="section-label">{t.about.label}</span>
       <h2 class="about-heading">
-        Ein gut gehütetes<br /><em>Geheimnis</em>
+        {t.about.heading1}<br /><em>{t.about.heading2}</em>
       </h2>
       <div class="about-text">
-        <p>
-          Versteckt in der Haingasse mitten in Bad Homburg liegt ein kleines, feines Restaurant,
-          das man kennen muss: <strong>Herr Lim</strong>. Wer ihn einmal findet, kommt immer wieder.
-        </p>
-        <p>
-          Wir kochen authentisches koreanisches Street Food – keine Fusion, keine Kompromisse.
-          Cupbap mit hausgemachtem Kimchi, knuspriges K-Chicken, würzige Tteokbokki und
-          dampfende Ramen. Alles frisch, mit Liebe und ohne Schnickschnack.
-        </p>
-        <p>
-          Rund 15 Plätze, hohe Tische, gute Musik – und immer ein freundliches Gesicht hinter
-          der Theke. Takeaway natürlich auch möglich.
-        </p>
+        <p set:html={t.about.p1} />
+        <p>{t.about.p2}</p>
+        <p>{t.about.p3}</p>
       </div>
       <div class="about-stats">
         <div class="stat">
           <span class="stat-value">4,9</span>
-          <span class="stat-label">Google Bewertung</span>
+          <span class="stat-label">{t.about.statRating}</span>
         </div>
         <div class="stat">
           <span class="stat-value">500+</span>
-          <span class="stat-label">Rezensionen</span>
+          <span class="stat-label">{t.about.statReviews}</span>
         </div>
         <div class="stat">
           <span class="stat-value">#1</span>
-          <span class="stat-label">Koreanisch in Bad Homburg</span>
+          <span class="stat-label">{t.about.statRank}</span>
         </div>
       </div>
     </div>
@@ -52,19 +46,13 @@
       </div>
       <div class="review-card">
         <div class="review-quote">"</div>
-        <blockquote class="review-text">
-          Sehr authentisches koreanisches Street Food – das Beste, was Bad Homburg zu bieten hat.
-          Kleine, gemütliche Atmosphäre, sehr nettes Personal.
-        </blockquote>
-        <cite class="review-cite">– Google-Bewertung, 5 Sterne</cite>
+        <blockquote class="review-text">{t.about.review1}</blockquote>
+        <cite class="review-cite">{t.about.reviewSource}</cite>
       </div>
       <div class="review-card">
         <div class="review-quote">"</div>
-        <blockquote class="review-text">
-          Absolut empfehlenswert! Das K-Chicken ist der Wahnsinn und die Tteokbokki
-          genau richtig scharf. Wird nicht das letzte Mal sein.
-        </blockquote>
-        <cite class="review-cite">– Google-Bewertung, 5 Sterne</cite>
+        <blockquote class="review-text">{t.about.review2}</blockquote>
+        <cite class="review-cite">{t.about.reviewSource}</cite>
       </div>
     </div>
   </div>
