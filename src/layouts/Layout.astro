@@ -28,7 +28,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -92,18 +92,18 @@ const {
 
 <style is:global>
   :root {
-    --bg: #faf7f2;
-    --bg-alt: #f2ede5;
-    --bg-dark: #1c1917;
-    --bg-dark-alt: #2c2420;
-    --text: #1c1917;
-    --text-muted: #78716c;
-    --accent: #c0392b;
-    --accent-hover: #a93225;
-    --accent-light: rgba(192, 57, 43, 0.09);
-    --border: #e7e0d8;
-    --font-display: 'DM Serif Display', Georgia, serif;
-    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --bg:           #FBF8F3;
+    --bg-alt:       #F2EAE0;
+    --bg-dark:      #2E2A26;
+    --bg-dark-alt:  #231F1C;
+    --text:         #2E2A26;
+    --text-muted:   #8A7D70;
+    --accent:       #B8885A;
+    --accent-hover: #A07A50;
+    --accent-light: rgba(184, 136, 90, 0.11);
+    --border:       #E4D8CC;
+    --font-display: 'Nunito', system-ui, sans-serif;
+    --font-sans:    'Nunito', system-ui, sans-serif;
     --max-w: 1100px;
   }
 
@@ -184,5 +184,54 @@ const {
       transform: none !important;
       transition: none !important;
     }
+  }
+
+  /* ── Cozy theme: global component rules ── */
+  .hero {
+    background:
+      linear-gradient(rgba(46,42,38,0.84) 0%, rgba(46,42,38,0.77) 40%, rgba(46,42,38,0.91) 100%),
+      url('https://images.unsplash.com/photo-1775883376447-655984a514bd?auto=format&fit=crop&w=1920&q=80')
+      center / cover no-repeat;
+  }
+  .hero-title   { font-weight: 900; letter-spacing: -0.02em; }
+  .hero-eyebrow { color: #D4A87A; }
+  .btn-primary  { border-radius: 50px; }
+  .btn-outline  { border-radius: 50px; }
+
+  .about-heading        { font-weight: 800; }
+  .about-heading em     { font-style: italic; font-weight: 800; color: var(--accent); }
+  .stat-value           { color: var(--accent); }
+  .about-photo-wrap     { border-radius: 18px; }
+  .about-photo          { border-radius: 17px; }
+  .review-card          { border-radius: 18px; }
+  .review-quote         { font-size: 3.5rem; color: var(--accent); opacity: 0.35; }
+
+  .cat-header           { border-bottom: 2px dotted var(--border); }
+  .highlight-card       { border-radius: 18px; border-color: transparent; box-shadow: 0 4px 20px rgba(46,42,38,0.08); }
+  .item-card            { border-radius: 14px; border-color: transparent; box-shadow: 0 2px 8px rgba(46,42,38,0.06); }
+  .item-card:hover      { box-shadow: 0 8px 28px rgba(46,42,38,0.11); transform: translateY(-3px); }
+  .item-price           { color: var(--accent); }
+
+  .tag-veg   { background: rgba(118,172,112,0.13); color: #3A7036; border-radius: 50px; }
+  .tag-spicy { background: rgba(194,120,60,0.12);  color: #9A5520; border-radius: 50px; }
+  .tag-hot   { background: rgba(184,136,90,0.14);  color: #7A5230; border-radius: 50px; }
+
+  .order              { background: var(--accent); }
+  .order-btn-primary  { border-radius: 50px; background: white; color: var(--accent); }
+  .order-btn-outline  { border-radius: 50px; }
+
+  .nav-cta      { border-radius: 50px !important; }
+  .lang-switch  { border-radius: 50px !important; }
+  .footer-logo  { color: #D4A87A; }
+
+  /* ── Mobile: simplify 3D transforms for performance ── */
+  @media (max-width: 720px) {
+    [data-animate]               { transition-duration: 0.5s; }
+    [data-animate='slide-up']    { transform: translateY(28px); }
+    [data-animate='slide-left']  { transform: translateX(28px); }
+    [data-animate='slide-right'] { transform: translateX(-28px); }
+    [data-animate='scale-in']    { transform: scale(0.93); }
+    [data-animate='flip-up']     { transform: translateY(28px); }
+    [data-animate].above         { transform: translateY(-18px) !important; }
   }
 </style>
