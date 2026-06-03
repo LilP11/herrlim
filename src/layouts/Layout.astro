@@ -76,13 +76,15 @@ const {
         });
       }
 
-      // ── Hero bowl parallax ──
-      const heroBowl = document.querySelector('.hero-bowl-wrap');
-      if (heroBowl) {
-        window.addEventListener('scroll', () => {
-          heroBowl.style.transform =
-            `translateY(calc(-50% + ${window.scrollY * 0.22}px))`;
-        }, { passive: true });
+      // ── Cube parallax (starts after enter animation finishes) ──
+      const cubeWrap = document.querySelector('.cube-wrap');
+      if (cubeWrap) {
+        setTimeout(() => {
+          window.addEventListener('scroll', () => {
+            cubeWrap.style.transform =
+              `translateY(calc(-50% + ${window.scrollY * 0.18}px))`;
+          }, { passive: true });
+        }, 2100);
       }
     </script>
   </body>
