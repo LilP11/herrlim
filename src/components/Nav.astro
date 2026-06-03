@@ -7,7 +7,10 @@ const t = translations[lang];
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href={lang === 'de' ? '/' : '/en'} class="nav-logo">Herr Lim</a>
+    <a href={lang === 'de' ? '/' : '/en'} class="nav-logo">
+      <img src="/images/logo.jpg" alt="Herr Lim" class="nav-logo-img" />
+      <span class="nav-logo-text">Herr Lim</span>
+    </a>
 
     <div class="nav-right">
       <ul class="nav-links" id="nav-links">
@@ -81,11 +84,27 @@ const t = translations[lang];
   }
 
   .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .nav-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-text {
     font-family: var(--font-display);
     font-size: 1.35rem;
     color: var(--accent);
     letter-spacing: -0.01em;
-    flex-shrink: 0;
   }
 
   .nav-right {

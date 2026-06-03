@@ -9,6 +9,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
+      <img src="/images/logo.jpg" alt="Herr Lim" class="footer-logo-img" />
       <span class="footer-logo">Herr Lim</span>
       <span class="footer-korean">한식</span>
       <p class="footer-tagline">{t.footer.tagline}</p>
@@ -80,6 +81,15 @@ const year = new Date().getFullYear();
     gap: 3rem;
     padding-bottom: 3.5rem;
     border-bottom: 1px solid rgba(250, 247, 242, 0.07);
+  }
+
+  .footer-logo-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 0.75rem;
   }
 
   .footer-logo {

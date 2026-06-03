@@ -7,6 +7,7 @@ const t = translations[lang];
 
 <section class="hero" id="hero">
   <div class="hero-inner">
+    <img src="/images/logo.jpg" alt="Herr Lim Logo" class="hero-logo" />
     <span class="hero-eyebrow">한식 · {t.hero.eyebrow}</span>
     <h1 class="hero-title">Herr Lim</h1>
     <p class="hero-location">{t.hero.address}</p>
@@ -186,6 +187,20 @@ const t = translations[lang];
     user-select: none;
     pointer-events: none;
     font-family: var(--font-sans);
+  }
+
+  .hero-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    animation: hero-up 0.7s cubic-bezier(0.16,1,0.3,1) 0s both;
+  }
+
+  @media (max-width: 480px) {
+    .hero-logo { width: 64px; height: 64px; }
   }
 
   /* ── Hero load animations ── */
