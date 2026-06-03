@@ -25,7 +25,7 @@ const tagClass: Record<string, string> = {
     </div>
 
     <div class="highlights">
-      <div class="highlight-card" data-animate="slide-up" style="transition-delay:0s">
+      <div class="highlight-card" data-animate="slide-up" data-tilt style="transition-delay:0s">
         <img
           src="https://images.unsplash.com/photo-1741295017668-c8132acd6fc0?auto=format&fit=crop&w=600&q=80"
           alt="Bibimbap"
@@ -38,7 +38,7 @@ const tagClass: Record<string, string> = {
           <span class="hl-name">Bibimbap</span>
         </div>
       </div>
-      <div class="highlight-card" data-animate="slide-up" style="transition-delay:0.13s">
+      <div class="highlight-card" data-animate="slide-up" data-tilt style="transition-delay:0.13s">
         <img
           src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
           alt="Ramen"
@@ -51,7 +51,7 @@ const tagClass: Record<string, string> = {
           <span class="hl-name">Ramen</span>
         </div>
       </div>
-      <div class="highlight-card" data-animate="slide-up" style="transition-delay:0.26s">
+      <div class="highlight-card" data-animate="slide-up" data-tilt style="transition-delay:0.26s">
         <img
           src="https://images.unsplash.com/photo-1624153064067-566cae78993d?auto=format&fit=crop&w=600&q=80"
           alt="K-Chicken"
@@ -81,7 +81,7 @@ const tagClass: Record<string, string> = {
 
         <div class="items-grid">
           {cat.items.map((item, ii) => (
-            <div class="item-card" data-animate="scale-in" style={`transition-delay:${ii * 0.06}s`}>
+            <div class="item-card" data-animate="scale-in" data-tilt style={`transition-delay:${ii * 0.06}s`}>
               <div class="item-top">
                 <span class="item-code">{item.code}</span>
                 <span class="item-price">{formatPrice(item.price)}</span>

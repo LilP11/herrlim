@@ -35,16 +35,55 @@ const {
   <body>
     <slot />
     <script>
-      const io = new IntersectionObserver(
-        entries => entries.forEach(e => {
+      // ── Bidirectional scroll observer ──
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
           if (e.isIntersecting) {
             e.target.classList.add('in-view');
-            io.unobserve(e.target);
+            e.target.classList.remove('above');
+          } else {
+            e.target.classList.remove('in-view');
+            // Track position so re-entry knows which direction to animate from
+            const r = e.target.getBoundingClientRect();
+            if (r.bottom < window.innerHeight * 0.5) {
+              e.target.classList.add('above');
+            } else {
+              e.target.classList.remove('above');
+            }
           }
-        }),
-        { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
-      );
+        });
+      }, { threshold: 0.12, rootMargin: '-8px 0px -8px 0px' });
+
       document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+
+      // ── 3D card tilt on hover (desktop only) ──
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+          card.addEventListener('mousemove', e => {
+            if (!card.classList.contains('in-view')) return;
+            const r  = card.getBoundingClientRect();
+            const x  = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+            const y  = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+            card.style.transform  = `perspective(700px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateZ(10px) scale(1.02)`;
+            card.style.transition = 'none';
+            card.style.zIndex     = '2';
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform  = '';
+            card.style.transition = 'transform 0.55s cubic-bezier(0.23, 1, 0.32, 1)';
+            card.style.zIndex     = '';
+          });
+        });
+      }
+
+      // ── Hero bowl parallax ──
+      const heroBowl = document.querySelector('.hero-bowl-wrap');
+      if (heroBowl) {
+        window.addEventListener('scroll', () => {
+          heroBowl.style.transform =
+            `translateY(calc(-50% + ${window.scrollY * 0.22}px))`;
+        }, { passive: true });
+      }
     </script>
   </body>
 </html>
@@ -106,33 +145,42 @@ const {
     display: block;
   }
 
-  /* ── Scroll animations ── */
+  /* ── Scroll animations — bidirectional + 3D ── */
   [data-animate] {
     opacity: 0;
     transition:
-      opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity  0.72s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  [data-animate='slide-up']    { transform: translateY(44px); }
-  [data-animate='slide-left']  { transform: translateX(52px); }
-  [data-animate='slide-right'] { transform: translateX(-52px); }
-  [data-animate='scale-in']    { transform: scale(0.88); }
+  /* Below viewport (default entry — slides up with 3D tilt) */
+  [data-animate='slide-up']    { transform: perspective(900px) translateY(52px)  rotateX(12deg); }
+  [data-animate='slide-left']  { transform: perspective(900px) translateX(56px)  rotateY(-12deg); }
+  [data-animate='slide-right'] { transform: perspective(900px) translateX(-56px) rotateY(12deg); }
+  [data-animate='scale-in']    { transform: perspective(900px) scale(0.82)       rotateX(10deg); }
+  [data-animate='flip-up']     { transform: perspective(700px) rotateX(60deg) translateY(24px); transform-origin: bottom center; }
 
+  /* Above viewport (re-entry from scrolling back up) */
+  [data-animate='slide-up'].above    { transform: perspective(900px) translateY(-32px) rotateX(-8deg); }
+  [data-animate='slide-left'].above  { transform: perspective(900px) translateY(-28px) rotateY(-4deg); }
+  [data-animate='slide-right'].above { transform: perspective(900px) translateY(-28px) rotateY(4deg); }
+  [data-animate='scale-in'].above    { transform: perspective(900px) scale(0.94) rotateX(-6deg); }
+  [data-animate='flip-up'].above     { transform: perspective(700px) rotateX(-25deg) translateY(-16px); transform-origin: top center; }
+
+  /* Visible */
   [data-animate].in-view {
     opacity: 1;
     transform: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [data-animate] {
+    [data-animate],
+    [data-animate].above,
+    [data-animate].in-view {
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;
-    }
-    [data-animate].in-view {
-      opacity: 1;
-      transform: none;
     }
   }
 </style>

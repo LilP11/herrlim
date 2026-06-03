@@ -18,15 +18,15 @@ const t = translations[lang];
         <p>{t.about.p3}</p>
       </div>
       <div class="about-stats">
-        <div class="stat" data-animate="slide-up" style="transition-delay:0s">
+        <div class="stat" data-animate="flip-up" style="transition-delay:0s">
           <span class="stat-value">4,9</span>
           <span class="stat-label">{t.about.statRating}</span>
         </div>
-        <div class="stat" data-animate="slide-up" style="transition-delay:0.12s">
+        <div class="stat" data-animate="flip-up" style="transition-delay:0.12s">
           <span class="stat-value">500+</span>
           <span class="stat-label">{t.about.statReviews}</span>
         </div>
-        <div class="stat" data-animate="slide-up" style="transition-delay:0.24s">
+        <div class="stat" data-animate="flip-up" style="transition-delay:0.24s">
           <span class="stat-value">#1</span>
           <span class="stat-label">{t.about.statRank}</span>
         </div>
@@ -44,12 +44,12 @@ const t = translations[lang];
           height="534"
         />
       </div>
-      <div class="review-card">
+      <div class="review-card" data-tilt>
         <div class="review-quote">"</div>
         <blockquote class="review-text">{t.about.review1}</blockquote>
         <cite class="review-cite">{t.about.reviewSource}</cite>
       </div>
-      <div class="review-card">
+      <div class="review-card" data-tilt>
         <div class="review-quote">"</div>
         <blockquote class="review-text">{t.about.review2}</blockquote>
         <cite class="review-cite">{t.about.reviewSource}</cite>
