@@ -10,10 +10,10 @@ import Order from '../../components/Order.astro';
 import Footer from '../../components/Footer.astro';
 ---
 
-<Layout lang="de" title="Herr Lim – Konzept 3: K-Modern">
+<Layout lang="de" title="Herr Lim – Konzept 3: Gemütlich">
   <link
     slot="head"
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800&display=swap"
     rel="stylesheet"
   />
   <ConceptSwitcher current={3} />
@@ -29,87 +29,152 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style is:global>
-  /* ── K-Modern theme ── */
+  /* ── Gemütlich theme: warm beige · light brown · cozy ── */
   :root {
-    --bg:           #FFFFFF;
-    --bg-alt:       #F5F5F5;
-    --bg-dark:      #111111;
-    --bg-dark-alt:  #1C1C1C;
-    --text:         #111111;
-    --text-muted:   #666666;
-    --accent:       #D94F3D;
-    --accent-hover: #C04030;
-    --accent-light: rgba(217, 79, 61, 0.08);
-    --border:       #E3E3E3;
-    --font-display: 'Outfit', system-ui, sans-serif;
-    --font-sans:    'Outfit', system-ui, sans-serif;
+    --bg:           #FBF8F3;
+    --bg-alt:       #F2EAE0;
+    --bg-dark:      #2E2A26;
+    --bg-dark-alt:  #231F1C;
+    --text:         #2E2A26;
+    --text-muted:   #8A7D70;
+    --accent:       #B8885A;
+    --accent-hover: #A07A50;
+    --accent-light: rgba(184, 136, 90, 0.11);
+    --border:       #E4D8CC;
+    --font-display: 'Nunito', system-ui, sans-serif;
+    --font-sans:    'Nunito', system-ui, sans-serif;
   }
 
   /* Push nav below concept bar */
   .nav { top: 42px; }
 
-  /* Outfit as display — weight & tracking adjustments */
-  .hero-title {
-    font-weight: 800;
-    letter-spacing: -0.04em;
+  /* ── Nav ── */
+  .nav-logo   { color: var(--accent); }
+  .nav-cta    { border-radius: 50px !important; }
+  .lang-switch { border-radius: 50px !important; }
+
+  /* ── Hero: warmer dark overlay ── */
+  .hero {
+    background:
+      linear-gradient(
+        rgba(46, 42, 38, 0.84) 0%,
+        rgba(46, 42, 38, 0.77) 40%,
+        rgba(46, 42, 38, 0.91) 100%
+      ),
+      url('https://images.unsplash.com/photo-1775883376447-655984a514bd?auto=format&fit=crop&w=1920&q=80')
+      center / cover no-repeat;
   }
 
+  .hero-title {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-eyebrow { color: #D4A87A; }
+
+  .btn-primary { border-radius: 50px; }
+  .btn-outline { border-radius: 50px; }
+
+  /* ── About ── */
+  .about { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+
   .about-heading {
-    font-weight: 700;
+    font-weight: 800;
     font-style: normal;
   }
 
   .about-heading em {
-    font-style: normal;
+    font-style: italic;
     font-weight: 800;
     color: var(--accent);
   }
 
-  .cat-name,
-  .menu-title,
-  .location-title,
-  .order-title,
-  .footer-logo {
-    font-weight: 700;
+  .stat-value { color: var(--accent); }
+
+  .about-photo-wrap {
+    border-radius: 18px;
+    border-color: var(--border);
   }
 
-  /* More whitespace between sections */
-  .about { padding-top: 7rem; padding-bottom: 7rem; }
-  .menu  { padding-top: 7rem; padding-bottom: 7rem; }
+  .about-photo { border-radius: 17px; }
 
-  @media (max-width: 720px) {
-    .about, .menu { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .review-card {
+    border-radius: 18px;
+    background: #FBF8F3;
+    border-color: var(--border);
   }
 
-  /* Rounded cards with soft shadows instead of borders */
-  .item-card {
-    border-radius: 10px;
+  .review-quote {
+    font-size: 3.5rem;
+    color: var(--accent);
+    opacity: 0.35;
+  }
+
+  /* ── Menu ── */
+  .menu { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+
+  .cat-header {
+    border-bottom: 2px dotted var(--border);
+  }
+
+  .highlight-card {
+    border-radius: 18px;
     border-color: transparent;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(46, 42, 38, 0.08);
+  }
+
+  .item-card {
+    border-radius: 14px;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(46, 42, 38, 0.06);
+    transition: box-shadow 0.25s, transform 0.25s;
   }
 
   .item-card:hover {
     border-color: transparent;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
-    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 8px 28px rgba(46, 42, 38, 0.11);
+    transform: translateY(-3px);
   }
 
-  /* Sage green for vegetarian */
+  .item-price { color: var(--accent); }
+
   .tag-veg {
-    background: rgba(120, 175, 115, 0.12);
+    background: rgba(118, 172, 112, 0.13);
     color: #3A7036;
+    border-radius: 50px;
   }
 
-  /* Smaller quote mark — sans-serif doesn't need it as big */
-  .review-quote { font-size: 3rem; }
+  .tag-spicy {
+    background: rgba(194, 120, 60, 0.12);
+    color: #9A5520;
+    border-radius: 50px;
+  }
 
-  /* Highlight cards — more rounded */
-  .highlight-card { border-radius: 10px; }
+  .tag-hot {
+    background: rgba(184, 136, 90, 0.14);
+    color: #7A5230;
+    border-radius: 50px;
+  }
 
-  /* Stat values in accent */
-  .stat-value { color: var(--accent); }
+  /* ── Order CTA ── */
+  .order { background: var(--accent); }
 
-  /* About photo rounded more */
-  .about-photo-wrap { border-radius: 10px; }
+  .order-btn-primary {
+    border-radius: 50px;
+    background: white;
+    color: var(--accent);
+  }
+
+  .order-btn-outline {
+    border-radius: 50px;
+    border-color: rgba(255,255,255,0.45);
+  }
+
+  /* ── Footer ── */
+  .footer-logo { color: #D4A87A; }
+
+  /* ── Mobile ── */
+  @media (max-width: 720px) {
+    .about, .menu { padding-top: 4rem; padding-bottom: 4rem; }
+  }
 </style>
