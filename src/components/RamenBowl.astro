@@ -1,0 +1,241 @@
+---
+---
+
+<div class="bowl-wrap" id="bowl-wrap" aria-hidden="true">
+  <canvas id="ramen-canvas"></canvas>
+  <p class="bowl-hint">Scroll ↕</p>
+</div>
+
+<script>
+import {
+  WebGLRenderer, Scene, PerspectiveCamera,
+  AmbientLight, DirectionalLight, PointLight,
+  LatheGeometry, CircleGeometry, TorusGeometry,
+  SphereGeometry, BoxGeometry, CylinderGeometry, BufferGeometry,
+  MeshStandardMaterial, PointsMaterial,
+  Mesh, Points, Group,
+  Vector2, BufferAttribute, BackSide,
+} from 'three';
+
+const wrap   = document.getElementById('bowl-wrap') as HTMLElement;
+const canvas = document.getElementById('ramen-canvas') as HTMLCanvasElement;
+if (!wrap || !canvas) throw new Error('no canvas');
+
+const SZ = wrap.clientWidth || 320;
+
+// ── Renderer ──
+const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
+renderer.setSize(SZ, SZ);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// ── Scene & Camera ──
+const scene = new Scene();
+const cam   = new PerspectiveCamera(42, 1, 0.1, 50);
+cam.position.set(0, 0.8, 2.4);
+cam.lookAt(0, 0, 0);
+
+// ── Lighting ──
+scene.add(new AmbientLight(0xfff5e8, 1.1));
+const sun = new DirectionalLight(0xffd090, 2.5);
+sun.position.set(3, 5, 4);
+scene.add(sun);
+const fill = new PointLight(0xffb870, 0.6, 12);
+fill.position.set(-3, 1, -2);
+scene.add(fill);
+const rim = new PointLight(0xfff0d0, 0.3, 8);
+rim.position.set(0, -1, -3);
+scene.add(rim);
+
+// ── Group (everything rotates together) ──
+const group = new Group();
+group.rotation.x = -0.18;
+scene.add(group);
+
+// ── Materials ──
+const ceramicMat = new MeshStandardMaterial({ color: 0xF0E8D8, roughness: 0.28, metalness: 0.02 });
+const innerMat   = new MeshStandardMaterial({ color: 0xD8CABB, roughness: 0.65, side: BackSide });
+const brothMat   = new MeshStandardMaterial({ color: 0x7D3015, roughness: 0.9  });
+const noodleMat  = new MeshStandardMaterial({ color: 0xCF9E48, roughness: 0.75 });
+const eggMat     = new MeshStandardMaterial({ color: 0xFAEFDF, roughness: 0.45 });
+const yolkMat    = new MeshStandardMaterial({ color: 0xFF8800, roughness: 0.4, emissive: 0xFF5500, emissiveIntensity: 0.18 });
+const noriMat    = new MeshStandardMaterial({ color: 0x1A2C1A, roughness: 0.9  });
+const onionMat   = new MeshStandardMaterial({ color: 0x4A8C3A, roughness: 0.7  });
+const stickMat   = new MeshStandardMaterial({ color: 0x7A4520, roughness: 0.7  });
+
+// ── Bowl profile (cross-section for lathe) ──
+const pts = [
+  [0.000,-0.48],[0.060,-0.47],[0.180,-0.43],
+  [0.300,-0.31],[0.400,-0.15],[0.460, 0.03],
+  [0.500, 0.22],[0.530, 0.38],[0.550, 0.46],[0.545, 0.505],
+].map(([x,y]) => new Vector2(x, y));
+
+group.add(new Mesh(new LatheGeometry(pts, 56), ceramicMat));
+
+// Inner wall
+const innerPts = pts.slice(0,-2).map(v => new Vector2(v.x * 0.91, v.y + 0.012));
+group.add(new Mesh(new LatheGeometry(innerPts, 48), innerMat));
+
+// ── Broth ──
+const broth = new Mesh(new CircleGeometry(0.43, 48), brothMat);
+broth.rotation.x = -Math.PI / 2;
+broth.position.y = 0.09;
+group.add(broth);
+
+// ── Noodles (5 flattened tori) ──
+[
+  [0.19, 0.018, 0.12, 0.10, 0.0],
+  [0.25, 0.016, 0.13, 0.07, 1.1],
+  [0.17, 0.017, 0.15, 0.13, 2.2],
+  [0.23, 0.015, 0.14, 0.09, 3.3],
+  [0.28, 0.014, 0.11, 0.06, 4.5],
+].forEach(([r, tube, y, tilt, rot]) => {
+  const m = new Mesh(new TorusGeometry(r, tube, 10, 26), noodleMat);
+  m.rotation.x = -Math.PI / 2 + tilt;
+  m.rotation.z = rot;
+  m.position.y = y;
+  group.add(m);
+});
+
+// ── Soft-boiled egg ──
+const egg = new Mesh(
+  new SphereGeometry(0.1, 18, 9, 0, Math.PI * 2, 0, Math.PI * 0.52),
+  eggMat,
+);
+egg.rotation.x = Math.PI;
+egg.position.set(0.24, 0.17, 0.1);
+group.add(egg);
+
+const yolk = new Mesh(new CircleGeometry(0.048, 16), yolkMat);
+yolk.rotation.x = -Math.PI / 2;
+yolk.position.set(0.24, 0.176, 0.1);
+group.add(yolk);
+
+// ── Nori ──
+const nori = new Mesh(new BoxGeometry(0.042, 0.19, 0.007), noriMat);
+nori.position.set(-0.23, 0.21, 0.13);
+nori.rotation.y = 0.35;
+group.add(nori);
+
+// ── Spring onions ──
+for (let i = 0; i < 9; i++) {
+  const a = (i / 9) * Math.PI * 2;
+  const m = new Mesh(new CylinderGeometry(0.007, 0.007, 0.055, 6), onionMat);
+  m.position.set(
+    Math.cos(a) * 0.16 + (Math.random() - 0.5) * 0.08,
+    0.18,
+    Math.sin(a) * 0.16 + (Math.random() - 0.5) * 0.08,
+  );
+  m.rotation.x = Math.PI / 2 + (Math.random() - 0.5) * 0.5;
+  m.rotation.z = Math.random() * Math.PI;
+  group.add(m);
+}
+
+// ── Chopsticks ──
+[-0.032, 0.032].forEach((xOff, i) => {
+  const m = new Mesh(new CylinderGeometry(0.0065, 0.0045, 1.1, 8), stickMat);
+  m.position.set(xOff, 0.46, 0);
+  m.rotation.z = i === 0 ? 0.07 : -0.07;
+  m.rotation.x = -0.18;
+  group.add(m);
+});
+
+// ── Steam particles ──
+const PC = 45;
+const pPos   = new Float32Array(PC * 3);
+const pPhase = new Float32Array(PC);
+for (let i = 0; i < PC; i++) {
+  pPos[i*3]   = (Math.random()-0.5)*0.65;
+  pPos[i*3+1] = 0.15 + Math.random() * 1.0;
+  pPos[i*3+2] = (Math.random()-0.5)*0.65;
+  pPhase[i]   = Math.random() * Math.PI * 2;
+}
+const pGeo = new BufferGeometry();
+pGeo.setAttribute('position', new BufferAttribute(pPos, 3));
+const pMat = new PointsMaterial({
+  color: 0xffffff, size: 0.036, transparent: true, opacity: 0.3, sizeAttenuation: true,
+});
+group.add(new Points(pGeo, pMat));
+
+// ── Scroll velocity ──
+let vel    = 0;
+let prevY  = window.scrollY;
+let prevT  = performance.now();
+
+window.addEventListener('scroll', () => {
+  const now = performance.now();
+  const dt  = Math.max(now - prevT, 1);
+  const dy  = window.scrollY - prevY;
+  vel   = (dy / dt) * 0.055; // scale: pixels/ms → rads
+  prevY = window.scrollY;
+  prevT = now;
+}, { passive: true });
+
+// ── Animation loop ──
+let angle = 0;
+const BASE = 0.004;
+
+(function tick() {
+  requestAnimationFrame(tick);
+  const t = performance.now() * 0.001;
+
+  vel   *= 0.88; // decay
+  angle += BASE + vel;
+  group.rotation.y = angle;
+  group.rotation.x = -0.18 + Math.sin(t * 0.4) * 0.03;
+
+  // Animate steam
+  for (let i = 0; i < PC; i++) {
+    pPos[i*3+1] += 0.0025;
+    pPos[i*3]   += Math.sin(t + pPhase[i]) * 0.0008;
+    if (pPos[i*3+1] > 1.15) {
+      pPos[i*3+1] = 0.15;
+      pPos[i*3]   = (Math.random()-0.5)*0.65;
+      pPos[i*3+2] = (Math.random()-0.5)*0.65;
+    }
+  }
+  pMat.opacity = 0.18 + Math.abs(Math.sin(t * 0.5)) * 0.14;
+  pGeo.attributes.position.needsUpdate = true;
+
+  renderer.render(scene, cam);
+})();
+
+// Resize
+window.addEventListener('resize', () => {
+  const s = wrap.clientWidth || 320;
+  renderer.setSize(s, s);
+});
+</script>
+
+<style>
+  .bowl-wrap {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 320px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    animation: bowl-enter 1s cubic-bezier(0.34, 1.2, 0.64, 1) 0.9s both;
+  }
+
+  @media (min-width: 960px) { .bowl-wrap { display: flex; } }
+
+  @keyframes bowl-enter {
+    from { opacity: 0; transform: translateY(-50%) translateX(90px); }
+    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+
+  #ramen-canvas { width: 320px !important; height: 320px !important; display: block; }
+
+  .bowl-hint {
+    color: rgba(255,255,255,0.25);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    font-family: var(--font-sans);
+  }
+</style>
