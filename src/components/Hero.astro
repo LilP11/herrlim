@@ -36,6 +36,16 @@ const t = translations[lang];
     </div>
   </div>
   <div class="hero-deco" aria-hidden="true">한</div>
+
+  <!-- Floating food bowl — desktop only -->
+  <div class="hero-bowl-wrap" aria-hidden="true">
+    <div class="hero-bowl-inner">
+      <img
+        src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=480&q=80"
+        alt=""
+      />
+    </div>
+  </div>
 </section>
 
 <style>
@@ -176,6 +186,63 @@ const t = translations[lang];
     user-select: none;
     pointer-events: none;
     font-family: var(--font-sans);
+  }
+
+  /* ── Hero load animations ── */
+  @keyframes hero-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: hero-up 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+  .hero-title   { animation: hero-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
+  .hero-location{ animation: hero-up 0.6s cubic-bezier(0.16,1,0.3,1) 0.42s both; }
+  .hero-text    { animation: hero-up 0.6s cubic-bezier(0.16,1,0.3,1) 0.55s both; }
+  .hero-actions { animation: hero-up 0.6s cubic-bezier(0.16,1,0.3,1) 0.68s both; }
+  .hero-hours   { animation: hero-up 0.5s cubic-bezier(0.16,1,0.3,1) 0.82s both; }
+
+  /* ── Floating bowl ── */
+  .hero-bowl-wrap {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    pointer-events: none;
+    /* slide in from right on load */
+    animation: bowl-enter 1s cubic-bezier(0.34, 1.3, 0.64, 1) 0.9s both;
+    display: none;
+  }
+
+  @keyframes bowl-enter {
+    from { opacity: 0; transform: translateY(-50%) translateX(80px); }
+    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+
+  .hero-bowl-inner {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow:
+      0 24px 64px rgba(0, 0, 0, 0.45),
+      0 0 0 3px rgba(255, 255, 255, 0.1);
+    /* gentle float after entering */
+    animation: bowl-float 6s ease-in-out 1.9s infinite;
+  }
+
+  @keyframes bowl-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-16px) rotate(2deg); }
+  }
+
+  .hero-bowl-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+  }
+
+  @media (min-width: 960px) {
+    .hero-bowl-wrap { display: block; }
   }
 
   @media (max-width: 720px) {

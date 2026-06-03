@@ -7,7 +7,7 @@ const t = translations[lang];
 
 <section class="location" id="location">
   <div class="location-inner">
-    <div class="location-info">
+    <div class="location-info" data-animate="slide-right">
       <span class="section-label" style="color: rgba(250,247,242,0.5)">{t.location.label}</span>
       <h2 class="location-title">{t.location.title}</h2>
 
@@ -47,7 +47,7 @@ const t = translations[lang];
       <p class="location-note">{t.location.note}</p>
     </div>
 
-    <div class="location-map">
+    <div class="location-map" data-animate="slide-left">
       <iframe
         src="https://maps.google.com/maps?q=Haingasse+17,+61348+Bad+Homburg+vor+der+H%C3%B6he&hl=de&z=17&output=embed"
         title="Herr Lim auf Google Maps"
