@@ -1,6 +1,6 @@
 ---
 import { translations } from '../i18n/translations.js';
-import RamenBowl from './RamenBowl.astro';
+import SpinningCube from './SpinningCube.astro';
 interface Props { lang: 'de' | 'en' }
 const { lang } = Astro.props;
 const t = translations[lang];
@@ -38,7 +38,7 @@ const t = translations[lang];
     </div>
   </div>
   <div class="hero-deco" aria-hidden="true">한</div>
-  <RamenBowl />
+  <SpinningCube />
 </section>
 
 <style>
