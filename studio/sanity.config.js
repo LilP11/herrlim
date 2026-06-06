@@ -7,7 +7,7 @@ export default defineConfig({
   title:     'Herr Lim – Speiseverwaltung',
 
   // ← Hier Ihre Project ID eintragen (von sanity.io/manage)
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'IHRE_PROJECT_ID',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || '8rs32vbt',
   dataset:   'production',
 
   plugins: [

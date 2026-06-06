@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sanity:import-menu": "node scripts/import-menu-to-sanity.mjs"
   },
   "dependencies": {
     "astro": "^4.16.18"

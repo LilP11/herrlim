@@ -4,7 +4,7 @@ export const menuCategories = [
     name: 'Cupbap',
     korean: '컵밥',
     subtitle: { de: 'Koreanische Reisschalen', en: 'Korean Rice Cups' },
-    description: { de: 'Dampfender Reis mit Topping nach Wahl – alle Varianten zu je € 11,50', en: 'Steamed rice with your choice of topping – all variants at € 11.50' },
+    description: { de: 'Dampfender Reis mit Topping nach Wahl - alle Varianten zu je EUR 11,50', en: 'Steamed rice with your choice of topping - all variants at EUR 11.50' },
     items: [
       { code: 'C.1', name: 'Tofu-Kimchi', price: 11.50, description: { de: 'Mit hausgemachtem Kimchi', en: 'With homemade kimchi' }, tags: ['vegetarisch'] },
       { code: 'C.2', name: 'Thunfisch-Kimchi', price: 11.50, description: { de: 'Thunfisch & Kimchi', en: 'Tuna & kimchi' } },
@@ -14,7 +14,7 @@ export const menuCategories = [
       { code: 'C.6', name: 'Jjimdak', price: 11.50, description: { de: 'Hähnchen in Sojasoße', en: 'Chicken in soy sauce' } },
       { code: 'C.7', name: 'Dakgalbi', price: 11.50, description: { de: 'Würziges Hähnchen', en: 'Spicy chicken' }, tags: ['scharf'] },
       { code: 'C.9', name: 'Thunfisch-Mayo', price: 11.50, description: { de: 'Thunfisch-Mayonnaise', en: 'Tuna mayo' } },
-    ]
+    ],
   },
   {
     id: 'bibimbap',
@@ -23,7 +23,7 @@ export const menuCategories = [
     subtitle: { de: 'Gemischter Reistopf', en: 'Mixed Rice Bowl' },
     items: [
       { code: 'C.10', name: 'Bibimbap', price: 13.00, description: { de: 'Gemüse, Reis & Gochujang-Soße', en: 'Vegetables, rice & gochujang sauce' }, tags: ['vegetarisch'] },
-    ]
+    ],
   },
   {
     id: 'tteokbokki',
@@ -34,20 +34,20 @@ export const menuCategories = [
       { code: 'B.1', name: 'Original Rabokki', price: 17.00, description: { de: 'Klassisch pikant', en: 'Classic spicy' }, tags: ['sehr scharf'] },
       { code: 'B.2', name: 'Jjajang Tteokbokki', price: 17.00, description: { de: 'Mit schwarzer Bohnensoße', en: 'With black bean sauce' } },
       { code: 'B.3', name: 'Rosé Tteokbokki', price: 17.00, description: { de: 'Cremig-würzige Soße', en: 'Creamy spicy sauce' }, tags: ['scharf'] },
-    ]
+    ],
   },
   {
     id: 'chicken',
     name: 'K-Chicken',
     korean: '닭강정',
-    subtitle: { de: 'Dakgangjeong – Knuspriges Fried Chicken', en: 'Dakgangjeong – Crispy Fried Chicken' },
+    subtitle: { de: 'Dakgangjeong - Knuspriges Fried Chicken', en: 'Dakgangjeong - Crispy Fried Chicken' },
     items: [
       { code: 'B.4', name: 'K-Chicken Ganjang', price: 16.00, description: { de: 'Knoblauch-Sojasoße', en: 'Garlic soy sauce' } },
       { code: 'B.5', name: 'K-Chicken Chilli', price: 16.00, description: { de: 'Süß-scharfe Soße', en: 'Sweet & spicy sauce' }, tags: ['scharf'] },
       { code: 'T.4', name: 'Tofu Gangjeong (Soja)', price: 16.00, description: { de: 'Tofu in Sojasoße', en: 'Tofu in soy sauce' }, tags: ['vegetarisch'] },
       { code: 'T.5', name: 'Tofu Gangjeong (Chilli)', price: 16.00, description: { de: 'Tofu, süß-scharf', en: 'Tofu, sweet & spicy' }, tags: ['vegetarisch', 'scharf'] },
       { code: 'S.2', name: 'XXL Dakgangjeong', price: 28.00, description: { de: 'Große Portion für zwei Personen', en: 'Large portion for two' } },
-    ]
+    ],
   },
   {
     id: 'ramen',
@@ -60,7 +60,7 @@ export const menuCategories = [
       { code: 'R.3', name: 'Ramen mit Mandu', price: 13.50, description: { de: 'Mit koreanischen Teigtaschen', en: 'With Korean dumplings' } },
       { code: 'R.4', name: 'Ramen mit Kimchi', price: 13.50, description: { de: 'Mit hausgemachtem Kimchi', en: 'With homemade kimchi' }, tags: ['scharf'] },
       { code: 'R.5', name: 'Ramen mit Käse', price: 13.50, description: { de: 'Mit geschmolzenem Käse', en: 'With melted cheese' } },
-    ]
+    ],
   },
   {
     id: 'hotdog',
@@ -71,7 +71,7 @@ export const menuCategories = [
       { code: 'H.1', name: 'Wurst Hotdog', price: 6.00, description: { de: 'Klassischer Corndog', en: 'Classic corndog' } },
       { code: 'H.2', name: 'Mozza & Wurst', price: 6.50, description: { de: 'Mozzarella & Wurst', en: 'Mozzarella & sausage' } },
       { code: 'H.3', name: 'Mozzarella Hotdog', price: 6.50, description: { de: 'Nur Mozzarella', en: 'Mozzarella only' }, tags: ['vegetarisch'] },
-    ]
+    ],
   },
   {
     id: 'sides',
@@ -82,6 +82,6 @@ export const menuCategories = [
       { code: 'B.6', name: 'Kimmali', price: 7.00, description: { de: 'Glasnudelrollen in Nori-Algen', en: 'Glass noodle rolls in nori seaweed' } },
       { code: 'B.7', name: 'Gunmandu', price: 7.00, description: { de: 'Gebratene Teigtaschen', en: 'Pan-fried dumplings' } },
       { code: 'B.8', name: 'Danmuji', price: 4.00, description: { de: 'Eingelegter gelber Rettich', en: 'Pickled yellow radish' } },
-    ]
+    ],
   },
-];
+]
